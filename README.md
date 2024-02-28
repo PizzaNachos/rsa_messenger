@@ -1,4 +1,6 @@
 ## Rsa Messenger
+~4000 Lines of cryptographic and low level tcp ridden rust 
+
 This is a toy project exploring RSA encryption from scratch as well as networking protocals and messengers
 
 the server folder contains a cargo project to run the server which works in the following way
