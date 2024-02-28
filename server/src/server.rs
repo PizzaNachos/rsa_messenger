@@ -106,12 +106,12 @@ async fn handle_connection(
     while socket_open == true {
         let mut buf = Vec::with_capacity(4096);
         let mut s = stream.lock().await;
-        println!("Aquired lock for {} peeking for data", id);
+        // println!("Aquired lock for {} peeking for data", id);
 
         let in_socket = s.try_read_buf(&mut buf);
         match in_socket {
             Err(_) => {
-                println!("\tNo data in buffer, Dropping Lock for {}", id);
+                // println!("\tNo data in buffer, Dropping Lock for {}", id);
                 drop(s);
                 tokio::time::sleep(Duration::from_millis(1500)).await;
                 continue;
@@ -127,7 +127,7 @@ async fn handle_connection(
                     // NOTE NEED TO ADD message end character to end of message, or a message length header
                     // How do we know when the message has finsihed transmitting? what if we read at tcp packet one
                     // but we dont wait for packets 2-5, maybe continuely loop inside here
-                    println!("\tData in buffer!");
+                    // println!("\tData in buffer!");
                     let mut big_buffer: Vec<u8> = Vec::with_capacity(4096);
                     big_buffer.append(&mut buf);
 
